@@ -5,24 +5,14 @@ import "./App.css";
 import Nav from "./components/Nav.js";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-import { makeStyles } from "@material-ui/core/styles";
 
 const web3 = new Web3(Web3.givenProvider);
 
 const contractAddress = "0x825E502428661521fC44BB0cd1b7DdFef4F00421";
 const storageContract = new web3.eth.Contract(simpleStorage, contractAddress);
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    "& > *": {
-      margin: theme.spacing(1),
-    },
-  },
- }));
-
 
 function App() {
-  const classes = useStyles();
   const [number, setUint] = useState(0);
   const [getNumber, setGet] = useState("0");
 
@@ -45,8 +35,8 @@ function App() {
   };
 
 return (
-    <div className={classes.root}>
-      <Nav></Nav>
+    <div>
+      <Nav class="mt-50"></Nav>
         <div className="main">
           <div className="card">
             <TextField
@@ -55,25 +45,20 @@ return (
               onChange={(t) => setUint(t.target.value)}
               variant="outlined"
             />
-            <form className="form" onSubmit={numberSet}>
-              <Button
-                variant="contained"
-                color="primary"
+            <form onSubmit={numberSet}>
+              <Button class="p-3 h-100 w-72 m-y flex items-center justify-center rounded-md border border-gray-300"
                 type="submit"
                 value="Confirm"
               >
                 Confirm
               </Button>
               <br />
-              <Button
-                variant="contained"
-                color="secondary"
+              <Button class="hover:bg-blue-200 hover:border-transparent hover:shadow-xs p-3 h-100 w-72 flex items-center justify-center rounded-md bg-black text-white"
                 onClick={numberGet}
                 type="button"
               >
-                Get your uint256
+                Get your number
               </Button>
-
               {getNumber}
             </form>
           </div>
