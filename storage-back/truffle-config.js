@@ -25,7 +25,8 @@
 // const mnemonic = fs.readFileSync(".secret").toString().trim();
 require("dotenv").config();
 const HDWalletProvider = require("@truffle/hdwallet-provider");
-const mnemonicPhrase = "test leisure seminar escape chest know give memory jewel toy pole kidney";
+const { INFURA_API_KEY, MNEMONIC } = process.env;
+//const mnemonicPhrase = "test leisure seminar escape chest know give memory jewel toy pole kidney";
 
 module.exports = {
   /**
@@ -50,18 +51,12 @@ module.exports = {
       port: 7545,            // Standard Ethereum port (default: none)
       network_id: "*",       // Any network (default: none)
     },
-    ropsten: {
-      provider: () =>
-        new HDWalletProvider({
-          mnemonic: {
-            phrase: mnemonicPhrase
-          },
-          providerOrUrl: "https://ropsten.infura.io/v3/2a1e9dbef84e4db09ac210b515ef661d",
-          numberOfAddresses: 1,
-          shareNonce: true,
-          derivationPath: "m/44'/1'/0'/0/"
-        }),
-      network_id: '3',
+    kovan: {
+      provider: function () {
+        return new HDWalletProvider(MNEMONIC, INFURA_API_KEY)
+      },
+      network_id: '42',
+      gas: 4000000
     },
     // Another network with more advanced options...
     // advanced: {
