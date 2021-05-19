@@ -23,6 +23,9 @@
 //
 // const fs = require('fs');
 // const mnemonic = fs.readFileSync(".secret").toString().trim();
+require("dotenv").config();
+const HDWalletProvider = require("@truffle/hdwallet-provider");
+const mnemonicPhrase = "test leisure seminar escape chest know give memory jewel toy pole kidney";
 
 module.exports = {
   /**
@@ -42,11 +45,24 @@ module.exports = {
     // tab if you use this network and you must also set the `host`, `port` and `network_id`
     // options below to some value.
     //
-     development: {
+    development: {
       host: "127.0.0.1",     // Localhost (default: none)
       port: 7545,            // Standard Ethereum port (default: none)
       network_id: "*",       // Any network (default: none)
-     },
+    },
+    ropsten: {
+      provider: () =>
+        new HDWalletProvider({
+          mnemonic: {
+            phrase: mnemonicPhrase
+          },
+          providerOrUrl: "https://ropsten.infura.io/v3/2a1e9dbef84e4db09ac210b515ef661d",
+          numberOfAddresses: 1,
+          shareNonce: true,
+          derivationPath: "m/44'/1'/0'/0/"
+        }),
+      network_id: '3',
+    },
     // Another network with more advanced options...
     // advanced: {
     // port: 8777,             // Custom port

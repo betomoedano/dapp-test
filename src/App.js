@@ -27,44 +27,44 @@ function App() {
       gas,
     });
   };
- 
+
   const numberGet = async (t) => {
     t.preventDefault();
     const post = await storageContract.methods.get().call();
     setGet(post);
   };
 
-return (
+  return (
     <div>
       <Nav class="mt-50"></Nav>
-        <div className="main">
-          <div className="card">
-            <TextField
-              id="outlined-basic"
-              label="your number goes here:"
-              onChange={(t) => setUint(t.target.value)}
-              variant="outlined"
-            />
-            <form onSubmit={numberSet}>
-              <Button class="p-3 h-100 w-72 m-y flex items-center justify-center rounded-md border border-gray-300"
-                type="submit"
-                value="Confirm"
-              >
-                Confirm
+      <div className="main">
+        <div className="card">
+          <TextField
+            id="outlined-basic"
+            label="your number goes here:"
+            onChange={(t) => setUint(t.target.value)}
+            variant="outlined"
+          />
+          <form onSubmit={numberSet}>
+            <Button class="p-3 h-100 w-72 m-y flex items-center justify-center rounded-md border border-gray-300"
+              type="submit"
+              value="Confirm"
+            >
+              Confirm
               </Button>
-              <br />
-              <Button class="hover:bg-blue-200 hover:border-transparent hover:shadow-xs p-3 h-100 w-72 flex items-center justify-center rounded-md bg-black text-white"
-                onClick={numberGet}
-                type="button"
-              >
-                Get your number
+            <br />
+            <Button class="hover:bg-blue-200 hover:border-transparent hover:shadow-xs p-3 h-100 w-72 flex items-center justify-center rounded-md bg-black text-white"
+              onClick={numberGet}
+              type="button"
+            >
+              Get your number
               </Button>
-              {getNumber}
-            </form>
-          </div>
+            {getNumber}
+          </form>
         </div>
       </div>
-    );
+    </div>
+  );
 }
 
 export default App;
