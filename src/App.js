@@ -8,7 +8,7 @@ import TextField from "@material-ui/core/TextField";
 
 const web3 = new Web3(Web3.givenProvider);
 
-const contractAddress = "0x825E502428661521fC44BB0cd1b7DdFef4F00421";
+const contractAddress = "0x84458c0486C006a8AD0378257C2E9634A9d02f90";
 const storageContract = new web3.eth.Contract(simpleStorage, contractAddress);
 
 
@@ -36,7 +36,7 @@ function App() {
 
   return (
     <div>
-      <Nav class="mt-50"></Nav>
+      <Nav></Nav>
       <div className="main">
         <div className="card">
           <TextField
@@ -45,8 +45,8 @@ function App() {
             onChange={(t) => setUint(t.target.value)}
             variant="outlined"
           />
-          <form onSubmit={numberSet}>
-            <Button class="p-3 h-100 w-72 m-y flex items-center justify-center rounded-md border border-gray-300"
+          <form>
+            <Button onClick={numberSet} class="p-3 h-100 w-72 m-y flex items-center justify-center rounded-md border border-gray-300"
               type="submit"
               value="Confirm"
             >
